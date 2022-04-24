@@ -17,6 +17,8 @@ import GroupedButtons from "./GroupedButtons"
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
+import Candle from './CandleChart'
+import Candle2 from './CandleChart2'
 
 ChartJS.register(
   CategoryScale,
@@ -37,7 +39,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Chart.js Line Chart',
+      text: 'History price change',
     },
   },
 }
@@ -66,20 +68,13 @@ export const data = {
 
 const about = () => {
   return (
-    <>
-      <Box sx={{ bgcolor: '#363737', height: '20vh' }}></Box>
-      <Line options={options} data={data} />
 
-      <Grid container spacing={2}>
-        <Grid item xs={5}>
-          <GroupedButtons />
-        </Grid>
-        <Grid item xs={5}>
-          <GroupedButtons />
-        </Grid>
-
-      </Grid>
-    </>
+    <div>
+      <Box sx={{ height: '20vh' }}></Box>
+      {/* <Line options={options} data={data} /> */}
+      <Candle></Candle>
+      <Candle2></Candle2>
+    </div>
 
   )
 }

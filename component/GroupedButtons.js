@@ -20,7 +20,7 @@ class GroupedButtons extends React.Component {
     return (
 
       <ButtonGroup
-        size="large"
+        // size="large"
         aria-label="outlined button group"
       >
         <Grid container spacing={2}>

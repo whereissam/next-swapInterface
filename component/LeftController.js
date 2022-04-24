@@ -5,45 +5,61 @@ import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
+import { useState } from 'react'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}))
+const WhiteBorderTextField = styled(TextField)`
+  & label.Mui-focused {
+    color: white;
+  }
+  & .MuiOutlinedInput-root {
+    &.Mui-focused fieldset {
+      border-color: white;
+    }
+  }
+`
 
 const LeftController = () => {
+
+  // const [firstTokenPrice, setFirstTokenPrice] = useState('')
+  // const [secondTokenPrice, setSecondTokenPrice] = useState('')
+
+  // function setFirstTokenPrice () {
+  //   console.log('change')
+  // }
+  const [token, setToken] = React.useState('')
+
+  const handleChange = (event) => {
+    setToken(event.target.value)
+    // console.log(event)
+  }
+
   return (
     <div>
-      <Box sx={{ bgcolor: '#363737', height: '30vh' }}></Box>
-      <Box sx={{ bgcolor: '#363737', height: '100vh' }} padding={2}>
+      <Box sx={{ height: '30vh' }}></Box>
+      <Box sx={{ height: '100vh' }} padding={2}>
 
         <h1>Crema Swap</h1>
 
         <Stack spacing={2}>
-          <label htmlFor="">Current Price</label>
-          <TextField
-            id="outlined-number"
-            label="Number"
-            type="number"
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          <TextField
-            id="outlined-number"
-            label="Number"
-            type="number"
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
+          <Box sx={{ minWidth: 120 }}>
+            <FormControl fullWidth>
+              <InputLabel id="token">Token Pair</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={token}
+                label="Token Pair"
+                onChange={handleChange}
+              >
+                <MenuItem value={'sol'}>SOL-MSOL</MenuItem>
+                <MenuItem value={'usdt'}>USDC-USDT</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
         </Stack>
 
       </Box>
